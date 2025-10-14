@@ -15,12 +15,18 @@ ls -l
 sudo cp html/config/config.inc.php.dist html/config/config.inc.php
 
 sudo mysql -u root
+    create database dvwa;
+    grant all on dvwa.* to dvwa@localhost identified by 'ubuntu12';
+    flush privileges;
+    exit
 
 cd /etc/php/
 ls -l
 cd 8.1/
 cd apache2/
-sudo nano php.ini 
+
+sudo nano php.ini
+    allow_url_include = On
 
 sudo systemctl restart apache2
 cd /var/www/html/
