@@ -1,0 +1,34 @@
+sudo apt -y install unzip
+sudo apt -y install mariadb-server mariadb-client
+sudo apt -y install php php-mysqli php-gd
+sudo systemctl enable apache2
+sudo systemctl enable mariadb
+sudo systemctl start apache2
+sudo systemctl start mariadb
+
+cd /var/www/
+wget https://github.com/ethicalhack3r/DVWA/archive/master.zip
+ls -l
+sudo unzip master.zip 
+sudo mv DVWA-master/ html/
+ls -l
+sudo cp html/config/config.inc.php.dist html/config/config.inc.php
+
+sudo mysql -u root
+
+cd /etc/php/
+ls -l
+cd 8.1/
+cd apache2/
+sudo nano php.ini 
+
+sudo systemctl restart apache2
+cd /var/www/html/
+ls -l
+sudo chmod a+w hackable/uploads/
+sudo chmod a+w config/
+sudo chmod a+w external/
+
+sudo nano config/config.inc.php
+sudo systemctl restart apache2
+sudo systemctl restart mariadb.service 
